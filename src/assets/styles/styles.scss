@@ -1,0 +1,17 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	&::before,
+	&::after {
+		box-sizing: inherit;
+	}
+}
+
+.button {
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 4px;
+	border: none;
+}
