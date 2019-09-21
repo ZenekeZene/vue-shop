@@ -5,8 +5,8 @@
       <h2>{{ productInfo.name }}</h2>
       <p>{{ productInfo.description_short }}</p>
       <p v-if="!isMini">{{ productInfo.description }}</p>
-      <p>{{ productInfo.price }}</p>
-	  <p>{{ productInfo.size }}</p>
+	  <p class="item__size">({{ size(productInfo.size) }})</p>
+      <p class="item__price">{{ productInfo.price }}</p>
       <slot name="product-actions"></slot>
     </section>
     <span class="on-sale" v-if="productInfo.onSale">SALE</span>
@@ -25,6 +25,11 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+	  size(sizeRAW) {
+		  return `Size ${(sizeRAW === 'small' ? 'S' : ( sizeRAW === 'medium' ? 'M': 'L'))}`;
+	  }
   }
 };
 </script>
@@ -34,7 +39,7 @@ export default {
   padding: 1rem;
 
   &__info {
-	padding: 1rem;
+	padding: 0 1rem;
   }
 
   h2 {
@@ -43,6 +48,7 @@ export default {
 
   &__image {
     width: 100%;
+	max-width: 320px;
 	border-radius: 4px;
   }
 
@@ -53,6 +59,15 @@ export default {
     #{$self}__image {
       max-width: 50vw;
     }
+  }
+
+  &__price {
+	font-weight: 700;
+  }
+
+  &__size {
+    padding: 0.1rem 0.8rem;
+	color: #2f2f2f;
   }
 }
 
